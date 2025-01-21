@@ -13,6 +13,7 @@ CFLAGS		= -Wall -Wextra -Werror -fsanitize=address -g
 INCS		= -I $(INCS_DIR)
 ARC			= ar rcs
 PRINT		= @printf
+LIB			= -L. -lprint
 RM			= rm -fr
 
 # **************************************************************************** #
@@ -42,11 +43,19 @@ FULL_CLEAN_MSG	= "$(PURPLE)Full cleaning $(NAME) $(DEFAULT)done on $(YELLOW)$(sh
 #                                    Sources                                   #
 # **************************************************************************** #
 
-ALL_FILES	=
+UTILS_DIR		= utils/
+UTILS_FILES		= ft_strlen.c \
+				  ft_ltobuff.c \
+				  ft_ultobuff.c \
+				  ft_strcpybuff.c
+
+ALL_FILES	= $(addprefix $(UTILS_DIR), $(UTILS_FILES))
 
 OBJS_FILES	= $(addprefix $(OBJS_DIR), $(ALL_FILES:.c=.o))
 
 DEP_FILES	= $(OBJS_FILES:.o=.d)
+
+OBJS_DIRS	= $(sort $(dir $(OBJS_FILES)))
 
 # **************************************************************************** #
 #                                     Rules                                    #
@@ -58,7 +67,7 @@ $(NAME): $(OBJS_FILES)
 	$(ARC) $(NAME) $(OBJS_FILES)
 	$(PRINT) $(COMP_MSG)
 
-$(OBJS_DIR)%.o: %.c | $(OBJS_DIR)
+$(OBJS_DIR)%.o: $(SRCS_DIR)%.c | $(OBJS_DIRS)
 	$(CC) $(CFLAGS) $(INCS) -MMD -MP -c $< -o $@
 
 clean:
@@ -67,11 +76,16 @@ clean:
 
 fclean: clean
 	$(RM) $(NAME)
+	$(RM) test
 	$(PRINT) $(FULL_CLEAN_MSG)
 
 re: fclean all
 
-$(OBJS_DIR):
+$(OBJS_DIRS):
 	mkdir -p $@
+
+test: all
+	$(CC) $(CFLAGS) $(INCS) main.c $(LIB) -o test
+	./test
 
 -include $(DEP_FILES)
