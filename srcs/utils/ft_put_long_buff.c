@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_put_long_buff.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/21 11:56:42 by eguelin           #+#    #+#             */
-/*   Updated: 2025/01/22 19:18:01 by eguelin          ###   ########.fr       */
+/*   Created: 2025/01/21 11:14:58 by eguelin           #+#    #+#             */
+/*   Updated: 2025/01/22 18:56:32 by eguelin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libprint.h"
-#include <stdio.h>
 
-int	main(void)
+void	ft_put_long_buff(t_buff *buff, t_arg *arg)
 {
-	printf("%d\n", ft_printf("Hello, %%!\n"));
-	printf("%d\n", ft_printf("Hello, %x!\n", 42000000000L));
-	printf("%d\n", printf("Hello, %x!\n", (int)42000000000L));
-	return (0);
+	if (buff->i >= buff->size)
+		return ;
+	if ((long)arg->arg < 0)
+	{
+		buff->buff[buff->i] = '-';
+		arg->arg = (void *)(-(long)(arg->arg));
+		buff->i++;
+	}
+	ft_put_ulong_buff(buff, arg);
+	return ;
 }

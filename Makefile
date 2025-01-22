@@ -46,12 +46,20 @@ FULL_CLEAN_MSG	= "$(PURPLE)Full cleaning $(NAME) $(DEFAULT)done on $(YELLOW)$(sh
 UTILS_DIR		= utils/
 UTILS_FILES		= ft_strlen.c \
 				  ft_strchr.c \
-				  ft_ltobuff.c \
-				  ft_ultobuff.c \
-				  ft_strcpybuff.c \
-				  ft_getarg.c
+				  ft_put_arg_buff.c \
+				  ft_put_char_buff.c \
+				  ft_put_hex_buff.c \
+				  ft_put_hexup_buff.c \
+				  ft_put_long_buff.c \
+				  ft_put_str_buff.c \
+				  ft_put_ulong_buff.c \
+				  ft_put_ulongb_buff.c \
+				  ft_getarg.c \
+				  ft_init_pf.c
 
-ALL_FILES	= $(addprefix $(UTILS_DIR), $(UTILS_FILES))
+ALL_FILES	= ft_printf.c
+
+ALL_FILES	+= $(addprefix $(UTILS_DIR), $(UTILS_FILES))
 
 OBJS_FILES	= $(addprefix $(OBJS_DIR), $(ALL_FILES:.c=.o))
 
