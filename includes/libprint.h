@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 19:44:13 by eguelin           #+#    #+#             */
-/*   Updated: 2025/01/21 13:14:18 by eguelin          ###   ########.fr       */
+/*   Updated: 2025/01/22 13:06:35 by eguelin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,11 @@ typedef struct s_printf
 }	t_printf;
 
 size_t	ft_strlen(const char *s);
+char	*ft_strchr(const char *s, int c);
 void	ft_ltobuff(t_buff *buff, t_arg *arg);
 void	ft_ultobuff(t_buff *buff, t_arg *arg, const char *base);
 void	ft_strcpybuff(t_buff *buff, t_arg *arg);
+int		ft_getarg(char c, va_list *ap, t_arg *arg);
 
 int		ft_printf(const char *format, ...);
 int		ft_dprintf(int fd, const char *format, ...);

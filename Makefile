@@ -45,9 +45,11 @@ FULL_CLEAN_MSG	= "$(PURPLE)Full cleaning $(NAME) $(DEFAULT)done on $(YELLOW)$(sh
 
 UTILS_DIR		= utils/
 UTILS_FILES		= ft_strlen.c \
+				  ft_strchr.c \
 				  ft_ltobuff.c \
 				  ft_ultobuff.c \
-				  ft_strcpybuff.c
+				  ft_strcpybuff.c \
+				  ft_getarg.c
 
 ALL_FILES	= $(addprefix $(UTILS_DIR), $(UTILS_FILES))
 
