@@ -6,12 +6,11 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:31:50 by eguelin           #+#    #+#             */
-/*   Updated: 2025/01/23 13:42:43 by eguelin          ###   ########.fr       */
+/*   Updated: 2025/01/23 14:09:41 by eguelin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libprint.h"
-#include <stdio.h>
+#include "utils.h"
 
 int	ft_getarg(const char *format, va_list *ap, t_arg *arg)
 {

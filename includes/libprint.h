@@ -6,71 +6,14 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 19:44:13 by eguelin           #+#    #+#             */
-/*   Updated: 2025/01/23 12:58:27 by eguelin          ###   ########.fr       */
+/*   Updated: 2025/01/23 14:14:13 by eguelin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBPRINT_H
 # define LIBPRINT_H
 
-# include <stdarg.h>
 # include <unistd.h>
-
-# define PRINTF_BUFF_SIZE 1024
-
-typedef enum e_arg_type
-{
-	CHAR,
-	INT,
-	UINT,
-	HEX,
-	HEX_UP,
-	STRING,
-	PTR,
-	PERCENT
-}	t_arg_type;
-
-typedef struct s_arg
-{
-	void		*arg;
-	t_arg_type	type;
-}	t_arg;
-
-typedef struct s_buff
-{
-	char	*buff;
-	size_t	size;
-	size_t	i;
-}	t_buff;
-
-typedef struct s_printf
-{
-	int			fd;
-	int			ret;
-	const char	*format;
-	va_list		ap;
-	t_arg		arg;
-	t_buff		buff;
-	int			(*ft_write_pf)(struct s_printf *);
-}	t_printf;
-
-size_t	ft_strlen(const char *s);
-void	ft_bzero(void *s, size_t n);
-int		ft_print_loop( const char *format, t_printf *pf);
-void	ft_put_arg_buff(t_printf *pf);
-void	ft_put_char_buff(t_printf *pf);
-void	ft_put_hex_buff(t_printf *pf);
-void	ft_put_hexup_buff(t_printf *pf);
-void	ft_put_long_buff(t_printf *pf);
-void	ft_put_ptr_buff(t_printf *pf);
-void	ft_put_str_buff(t_printf *pf);
-void	ft_put_ulong_buff(t_printf *pf);
-void	ft_put_ulongb_buff(t_printf *pf, const char *base);
-void	ft_putargbuff(t_printf *pf);
-int		ft_getarg(const char *format, va_list *ap, t_arg *arg);
-void	ft_init_pf(t_printf *pf, int fd, char *pf_buff, size_t size);
-char	*ft_strchr(const char *s, int c);
-int		ft_write_pf(t_printf *pf);
 
 int		ft_printf(const char *format, ...);
 int		ft_dprintf(int fd, const char *format, ...);

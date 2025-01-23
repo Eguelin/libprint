@@ -6,12 +6,11 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:52:55 by eguelin           #+#    #+#             */
-/*   Updated: 2025/01/23 14:05:52 by eguelin          ###   ########.fr       */
+/*   Updated: 2025/01/23 14:09:41 by eguelin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libprint.h"
-#include <stdio.h>
+#include "utils.h"
 
 int	ft_print_loop( const char *format, t_printf *pf)
 {

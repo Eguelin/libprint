@@ -7,10 +7,12 @@
 NAME		= libprint.a
 OBJS_DIR	= .objs/
 SRCS_DIR	= srcs/
+UTILS_DIR	= utils/
 INCS_DIR	= includes/
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror -fsanitize=address -g
 INCS		= -I $(INCS_DIR)
+INCS_UTILS	= -I $(INCS_DIR)$(UTILS_DIR)
 ARC			= ar rcs
 PRINT		= @printf
 LIB			= -L. -lprint
@@ -43,22 +45,21 @@ FULL_CLEAN_MSG	= "$(PURPLE)Full cleaning $(NAME) $(DEFAULT)done on $(YELLOW)$(sh
 #                                    Sources                                   #
 # **************************************************************************** #
 
-UTILS_DIR		= utils/
-UTILS_FILES		= ft_strlen.c \
-				  ft_strchr.c \
-				  ft_put_arg_buff.c \
-				  ft_put_char_buff.c \
-				  ft_put_hex_buff.c \
-				  ft_put_hexup_buff.c \
-				  ft_put_long_buff.c \
-				  ft_put_ptr_buff.c \
-				  ft_put_str_buff.c \
-				  ft_put_ulong_buff.c \
-				  ft_put_ulongb_buff.c \
-				  ft_getarg.c \
-				  ft_init_pf.c \
-				  ft_write_pf.c \
-				  ft_print_loop.c
+UTILS_FILES	= ft_strlen.c \
+			  ft_strchr.c \
+			  ft_put_arg_buff.c \
+			  ft_put_char_buff.c \
+			  ft_put_hex_buff.c \
+			  ft_put_hexup_buff.c \
+			  ft_put_long_buff.c \
+			  ft_put_ptr_buff.c \
+			  ft_put_str_buff.c \
+			  ft_put_ulong_buff.c \
+			  ft_put_ulongb_buff.c \
+			  ft_getarg.c \
+			  ft_init_pf.c \
+			  ft_write_pf.c \
+			  ft_print_loop.c
 
 ALL_FILES	= ft_printf.c \
 			  ft_dprintf.c \
@@ -84,7 +85,7 @@ $(NAME): $(OBJS_FILES)
 	$(PRINT) $(COMP_MSG)
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c | $(OBJS_DIRS)
-	$(CC) $(CFLAGS) $(INCS) -MMD -MP -c $< -o $@
+	$(CC) $(CFLAGS) $(INCS_UTILS) -MMD -MP -c $< -o $@
 
 clean:
 	$(RM) $(OBJS_DIR)
@@ -103,5 +104,7 @@ $(OBJS_DIRS):
 test: all
 	$(CC) $(CFLAGS) $(INCS) main.c $(LIB) -o test
 	./test
+
+retest: fclean test
 
 -include $(DEP_FILES)

@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:56:42 by eguelin           #+#    #+#             */
-/*   Updated: 2025/01/23 13:46:38 by eguelin          ###   ########.fr       */
+/*   Updated: 2025/01/23 14:19:21 by eguelin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ int	main(void)
 	printf("%d\n", printf("Hello, %d!\n", 42));
 	printf("%d\n", ft_printf("Hello, %s!\n", NULL));
 	printf("%d\n", printf("Hello, %s!\n", str));
-	printf("%d\n", ft_printf("Hello, %!\n", 42));
+	printf("%d\n", ft_dprintf(1, "Hello, %!\n", 42));
 	return (0);
 }

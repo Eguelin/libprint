@@ -6,11 +6,11 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 13:05:49 by eguelin           #+#    #+#             */
-/*   Updated: 2025/01/22 13:06:10 by eguelin          ###   ########.fr       */
+/*   Updated: 2025/01/23 14:16:37 by eguelin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libprint.h"
+#include "utils.h"
 
 char	*ft_strchr(const char *s, int c)
 {
