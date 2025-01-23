@@ -51,11 +51,14 @@ UTILS_FILES		= ft_strlen.c \
 				  ft_put_hex_buff.c \
 				  ft_put_hexup_buff.c \
 				  ft_put_long_buff.c \
+				  ft_put_ptr_buff.c \
 				  ft_put_str_buff.c \
 				  ft_put_ulong_buff.c \
 				  ft_put_ulongb_buff.c \
 				  ft_getarg.c \
-				  ft_init_pf.c
+				  ft_init_pf.c \
+				  ft_write_pf.c \
+				  ft_print_loop.c
 
 ALL_FILES	= ft_printf.c
 

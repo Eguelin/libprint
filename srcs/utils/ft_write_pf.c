@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_put_ulong_buff.c                                :+:      :+:    :+:   */
+/*   ft_write_pf.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/22 17:36:34 by eguelin           #+#    #+#             */
-/*   Updated: 2025/01/23 12:08:45 by eguelin          ###   ########.fr       */
+/*   Created: 2025/01/23 11:18:04 by eguelin           #+#    #+#             */
+/*   Updated: 2025/01/23 13:27:53 by eguelin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libprint.h"
 
-void	ft_put_ulong_buff(t_printf *pf)
+int	ft_write_pf(t_printf *pf)
 {
-	ft_put_ulongb_buff(pf, "0123456789");
-	return ;
+	if (write(pf->fd, pf->buff.buff, pf->buff.i) == -1)
+	{
+		pf->ret = -1;
+		return (-1);
+	}
+	pf->ret += pf->buff.i;
+	pf->buff.i = 0;
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:15:04 by eguelin           #+#    #+#             */
-/*   Updated: 2025/01/22 19:23:37 by eguelin          ###   ########.fr       */
+/*   Updated: 2025/01/23 11:42:12 by eguelin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 
 static unsigned long	set_div(unsigned long nbr, size_t b_size);
 
-void	ft_put_ulongb_buff(t_buff *buff, t_arg *arg, const char *base)
+void	ft_put_ulongb_buff(t_printf *pf, const char *base)
 {
 	size_t			b_size;
 	unsigned long	div;
 	unsigned long	nbr;
+	t_buff			*buff;
+	t_arg			*arg;
 
-	if (buff->i >= buff->size)
-		return ;
+	buff = &pf->buff;
+	arg = &pf->arg;
 	nbr = (unsigned long)arg->arg;
 	b_size = ft_strlen(base);
 	div = set_div(nbr, b_size);
@@ -31,10 +33,10 @@ void	ft_put_ulongb_buff(t_buff *buff, t_arg *arg, const char *base)
 		nbr %= div;
 		div /= b_size;
 		buff->i++;
+		if (pf->ft_write_pf && buff->i >= buff->size)
+			if (pf->ft_write_pf(pf) == -1)
+				return ;
 	}
-	arg->arg = (void *)nbr;
-	if (arg->arg == 0)
-		arg->type = NONE;
 	return ;
 }
 

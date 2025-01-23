@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:31:50 by eguelin           #+#    #+#             */
-/*   Updated: 2025/01/22 19:30:27 by eguelin          ###   ########.fr       */
+/*   Updated: 2025/01/23 13:42:43 by eguelin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,29 +16,23 @@
 int	ft_getarg(const char *format, va_list *ap, t_arg *arg)
 {
 	size_t				i;
-	const char			*char_type = "cdixXusp%";
-	const t_arg_type	*types = (t_arg_type []){
-	CHAR,
-	INT,
-	INT,
-	HEX,
-	HEX_UP,
-	UINT,
-	STRING,
-	PTR,
-	PERCENT};
+	const char			*char_type = "cdiuxXsp%";
+	const t_arg_type	*types = (t_arg_type []){\
+	CHAR, INT, INT, UINT, HEX, HEX_UP, STRING, PTR, PERCENT};
 
+	if (!*format)
+		return (1);
 	i = ft_strchr(char_type, *format) - char_type;
-	if (i >= ft_strlen(char_type))
+	if (i > PERCENT)
 	{
-		arg->type = NONE;
+		arg->arg = (void *)('%');
 		return (1);
 	}
-	arg->type = types[i];
-	printf("type : %d\n", arg->type);
-	if (arg->type < HEX)
+	else
+		arg->type = types[i];
+	if (arg->type < UINT)
 		arg->arg = (void *)(long)va_arg(*ap, int);
-	else if (arg->type < UINT)
+	else if (arg->type < STRING)
 		arg->arg = (void *)(long)va_arg(*ap, unsigned int);
 	else if (arg->type < PERCENT)
 		arg->arg = va_arg(*ap, void *);

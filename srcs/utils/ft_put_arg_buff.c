@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 14:25:28 by eguelin           #+#    #+#             */
-/*   Updated: 2025/01/22 19:05:56 by eguelin          ###   ########.fr       */
+/*   Updated: 2025/01/23 12:46:50 by eguelin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,16 @@
 
 void	ft_put_arg_buff(t_printf *pf)
 {
-	void	(* const putarg[])(t_buff *, t_arg *) = {
-	ft_put_char_buff,
-	ft_put_long_buff,
-	ft_put_hex_buff,
-	ft_put_hexup_buff,
-	ft_put_long_buff,
-	ft_put_str_buff,
-	ft_put_hex_buff,
-	ft_put_char_buff};
+	void	(*putarg[8])(t_printf *pf);
 
-	if (pf->arg.type == NONE)
-	{
-		pf->format++;
-		if (ft_getarg(pf->format, &pf->ap, &pf->arg) == -1)
-			return ;
-	}
-	putarg[pf->arg.type](&pf->buff, &pf->arg);
+	putarg[CHAR] = ft_put_char_buff;
+	putarg[INT] = ft_put_long_buff;
+	putarg[UINT] = ft_put_ulong_buff;
+	putarg[HEX] = ft_put_hex_buff;
+	putarg[HEX_UP] = ft_put_hexup_buff;
+	putarg[STRING] = ft_put_str_buff;
+	putarg[PTR] = ft_put_ptr_buff;
+	putarg[PERCENT] = ft_put_char_buff;
+	putarg[pf->arg.type](pf);
 	return ;
 }

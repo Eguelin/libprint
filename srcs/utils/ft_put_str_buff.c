@@ -6,40 +6,31 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 13:08:02 by eguelin           #+#    #+#             */
-/*   Updated: 2025/01/22 19:16:43 by eguelin          ###   ########.fr       */
+/*   Updated: 2025/01/23 11:42:23 by eguelin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libprint.h"
 
-char	*ft_strcpy(char *dest, const char *src)
-{
-	char	*ptr;
-
-	ptr = dest;
-	while (*src != 0)
-		*ptr++ = *src++;
-	*ptr = 0;
-	return (dest);
-}
-
-void	ft_put_str_buff(t_buff *buff, t_arg *arg)
+void	ft_put_str_buff(t_printf *pf)
 {
 	char	*str;
+	t_buff	*buff;
+	t_arg	*arg;
 
-	if (buff->i >= buff->size)
-		return ;
+	buff = &pf->buff;
+	arg = &pf->arg;
 	str = (char *)arg->arg;
 	if (str == NULL)
-		str = ft_strcpy(arg->null, "(null)");
+		str = "(null)";
 	while (*str != 0 && buff->i < buff->size)
 	{
 		buff->buff[buff->i] = *str;
 		buff->i++;
 		str++;
+		if (pf->ft_write_pf && buff->i >= buff->size)
+			if (pf->ft_write_pf(pf) == -1)
+				return ;
 	}
-	arg->arg = str;
-	if (*str == 0)
-		arg->type = NONE;
 	return ;
 }

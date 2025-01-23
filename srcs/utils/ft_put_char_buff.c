@@ -6,18 +6,24 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 17:25:34 by eguelin           #+#    #+#             */
-/*   Updated: 2025/01/22 18:44:03 by eguelin          ###   ########.fr       */
+/*   Updated: 2025/01/23 11:30:18 by eguelin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libprint.h"
 
-void	ft_put_char_buff(t_buff *buff, t_arg *arg)
+void	ft_put_char_buff(t_printf *pf)
 {
+	t_buff	*buff;
+	t_arg	*arg;
+
+	buff = &pf->buff;
+	arg = &pf->arg;
 	if (buff->i >= buff->size)
 		return ;
 	buff->buff[buff->i] = (char)(long)arg->arg;
 	buff->i++;
-	arg->type = NONE;
+	if (pf->ft_write_pf && buff->i >= buff->size)
+		pf->ft_write_pf(pf);
 	return ;
 }
