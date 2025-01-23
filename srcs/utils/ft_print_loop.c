@@ -6,7 +6,7 @@
 /*   By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 12:52:55 by eguelin           #+#    #+#             */
-/*   Updated: 2025/01/23 13:44:31 by eguelin          ###   ########.fr       */
+/*   Updated: 2025/01/23 14:05:52 by eguelin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_print_loop( const char *format, t_printf *pf)
 			if (ft_getarg(format, &pf->ap, &pf->arg))
 			{
 				ft_put_char_buff(pf);
-				pf->arg.arg = *format;
+				pf->arg.arg = (void *)(long)*format;
 				pf->arg.type = CHAR;
 				if (pf->ft_write_pf)
 					pf->ft_write_pf(pf);
