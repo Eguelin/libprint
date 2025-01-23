@@ -60,7 +60,10 @@ UTILS_FILES		= ft_strlen.c \
 				  ft_write_pf.c \
 				  ft_print_loop.c
 
-ALL_FILES	= ft_printf.c
+ALL_FILES	= ft_printf.c \
+			  ft_dprintf.c \
+			  ft_sprintf.c \
+			  ft_snprintf.c
 
 ALL_FILES	+= $(addprefix $(UTILS_DIR), $(UTILS_FILES))
 
