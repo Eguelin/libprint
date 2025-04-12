@@ -6,7 +6,7 @@
 #    By: eguelin <eguelin@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/24 18:06:37 by eguelin           #+#    #+#              #
-#    Updated: 2025/01/24 18:07:08 by eguelin          ###   ########.fr        #
+#    Updated: 2025/04/11 19:52:40 by eguelin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRCS_DIR	= srcs/
 UTILS_DIR	= utils/
 INCS_DIR	= includes/
 CC			= gcc
-CFLAGS		= -Wall -Wextra -Werror -fsanitize=address -g
+CFLAGS		= -fsanitize=address -g
 INCS		= -I $(INCS_DIR)
 INCS_UTILS	= -I $(INCS_DIR)$(UTILS_DIR)
 ARC			= ar rcs
@@ -57,7 +57,9 @@ FULL_CLEAN_MSG	= "$(PURPLE)Full cleaning $(NAME) $(DEFAULT)done on $(YELLOW)$(sh
 #                                    Sources                                   #
 # **************************************************************************** #
 
-UTILS_FILES	= ft_strlen.c \
+UTILS_FILES	= ft_bzero.c \
+			  ft_flush_buff.c \
+			  ft_strlen.c \
 			  ft_strchr.c \
 			  ft_put_arg_buff.c \
 			  ft_put_char_buff.c \
@@ -69,9 +71,13 @@ UTILS_FILES	= ft_strlen.c \
 			  ft_put_ulong_buff.c \
 			  ft_put_ulongb_buff.c \
 			  ft_getarg.c \
-			  ft_init_pf.c \
+			  ft_gettype.c \
 			  ft_write_pf.c \
-			  ft_print_loop.c
+			  ft_print_loop.c \
+			  ft_init_t_string.c \
+			  ft_init_t_printf.c \
+			  ft_init_t_format.c \
+			  ft_strlcpy.c
 
 ALL_FILES	= ft_printf.c \
 			  ft_dprintf.c \
